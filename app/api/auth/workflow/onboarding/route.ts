@@ -1,4 +1,4 @@
-import { serve } from "@upstash/workflow/nextjs"
+import { serve } from "@upstash/workflow/dist/nextjs"
 
 type InitialData = {
   email: string
