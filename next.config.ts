@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  typscript :{
+  typescript :{
     ignoreBuildErrors : true,
   },
   eslint :{
