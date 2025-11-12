@@ -5,6 +5,7 @@ import config from './config';
 
 export const workFlowClient = new WorkFlowClient({
     baseUrl : config.env.upstash.qstashUrl,
+    token : config.env.upstash.qstashToken,
 });
 
 export const qstashClient = new QstashClient({token : config.env.upstash.qstashToken,});
