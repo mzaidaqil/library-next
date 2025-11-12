@@ -8,6 +8,12 @@ import { signIn } from "@/auth";
 import { headers } from "next/headers";
 import ratelimit from "@/lib/ratelimit";
 import { redirect } from "next/navigation";
+import config from "@/lib/config";
+import { Client as WorkflowClient } from "@upstash/workflow";
+
+const workflowClient = new WorkflowClient({
+    baseUrl : config.env.upstash.qstashUrl,
+});
 
 export const signUp = async (params: AuthCredentials) => {
     const { fullName, email, universityId, universityCard, password } = params;
@@ -37,6 +43,14 @@ export const signUp = async (params: AuthCredentials) => {
             universityCard,
             password: hashedPassword,
         });
+
+        await workflowClient.trigger({
+            url : `${config.env.prodApiEndpoint}/api/auth/workflow/onboarding`, 
+            body : {
+                email, 
+                fullName,
+            }
+        })
 
         await signInWithCredentials({ email, password });
         return { success: true, message: 'User created successfully' };
