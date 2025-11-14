@@ -13,6 +13,7 @@ import { Client as WorkflowClient } from "@upstash/workflow";
 
 const workflowClient = new WorkflowClient({
     baseUrl : config.env.upstash.qstashUrl,
+    token : config.env.upstash.qstashToken,
 });
 
 export const signUp = async (params: AuthCredentials) => {
