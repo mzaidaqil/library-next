@@ -18,7 +18,7 @@ export const sendEmail = async ({email, subject, message} : {email: string, subj
         },
         body : {
             from : "Zayed <contact@zaidaqil.com>",
-            email : [email],
+            to : [email],
             subject, 
             html : message,
         }
