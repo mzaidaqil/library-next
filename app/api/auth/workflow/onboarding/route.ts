@@ -29,7 +29,8 @@ const getUserState = async (email: string): Promise<UserState> => {
   return "active";
 };
 
-export const { POST } = serve<InitialData>(async (context) => {
+export const { POST } = serve<InitialData>(
+  async (context) => {
   const { email, fullName } = context.requestPayload;
 
   // Welcome Email
